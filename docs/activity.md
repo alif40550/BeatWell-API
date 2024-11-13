@@ -1,7 +1,7 @@
-# foods
+# Activity Endpoint
 
 - Method: **GET**
-- Endpoint: **/activities**
+- Endpoint: **/activity**
 
 ## Responses (Success)
 
@@ -9,16 +9,14 @@
 {
     "status":200,
     "body":{
-        "message":'berhasil mendapatkan list foods',
+        "message":'berhasil mendapatkan  activity',
         "error":false,
-        "data":[
-            {
+        "data":{
                 "id":string,
                 "name":string,
-                "recipe":string
+                "detail":string
             },
             ...
-        ]
     },
     ...
 }
@@ -30,22 +28,8 @@
 {
     "status":400,
     "body":{
-        "message":'gagal mendapatkan list foods',
+        "message":'gagal mendapatkan data activity',
         "error":true,
-    },
-    ...
-}
-```
-
-## Responses (Empty)
-
-```json
-{
-    "status":200,
-    "body":{
-        "message":'berhasil mendapatkan list foods',
-        "error":false,
-        "data":[]
     },
     ...
 }
