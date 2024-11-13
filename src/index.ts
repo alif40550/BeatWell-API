@@ -16,6 +16,8 @@ app.get('/', async (req: Request, res: Response) => {
 });
 
 // Start the Express server
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`The server is running at http://localhost:${port}`);
 });
+
+export default server;
