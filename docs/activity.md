@@ -12,11 +12,14 @@
         "message":string,
         "error":false,
         "data":[
-            ...,
-            {},
-            ...,
+            {
+                "id":string,
+                "name":string,
+            },
+            ...
         ]
-    }
+    },
+    ...
 }
 ```
 
@@ -24,11 +27,12 @@
 
 ```json
 {
+    "status":400,
     "body":{
         "message":string,
         "error":true,
     },
-    "status":400,
+    ...
 }
 ```
 
@@ -36,11 +40,12 @@
 
 ```json
 {
+    "status":200,
     "body":{
         "message":string,
         "error":false,
         "data":[]
     },
-    "status":200,
+    ...
 }
 ```
