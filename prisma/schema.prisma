@@ -16,4 +16,36 @@ datasource db {
 model User {
   id   Int    @id
   name String
+  image String
+  email String
+  token String
+  histories History[]
+  healthProfiles HealthProfile[]
+}
+model Activity{
+  id Int @id
+  name String
+  detail String
+}
+
+model Food{
+  id Int @id
+  name String
+  recipe String
+}
+
+model History{
+  id Int @id
+  userId Int 
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model HealthProfile{
+  id Int @id
+  userId Int
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
 }

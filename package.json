@@ -9,7 +9,7 @@
     "dev": "npx tsx --watch src/index.ts",
     "start": "npx tsx src/index.ts",
     "lint": "eslint ./",
-    "db": "npx prisma"
+    "db-migrate": "npx prisma migrate dev"
   },
   "author": "",
   "license": "ISC",
