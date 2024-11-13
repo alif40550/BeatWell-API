@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllfoods } from './controller/foodController';
+import { getAllFoods, getDetailedFood } from './controller/foodController';
 
 const router = Router();
 
@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/foods', getAllfoods)
+router.get('/foods', getAllFoods);
+router.get('/foods/{id}', getDetailedFood);
 
 export default router;
