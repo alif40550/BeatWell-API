@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getAllfoods } from './controller/foodController';
 
 const router = Router();
 
@@ -8,5 +9,7 @@ router.get('/', (req, res) => {
     error: false,
   });
 });
+
+router.get('/foods', getAllfoods)
 
 export default router;

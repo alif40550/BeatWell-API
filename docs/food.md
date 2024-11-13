@@ -79,7 +79,7 @@
 
 ```json
 {
-    "status":400,
+    "status":404,
     "body":{
         "message":'gagal mendapatkan data food',
         "error":true,
