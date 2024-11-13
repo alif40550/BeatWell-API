@@ -1,23 +1,19 @@
 import 'dotenv/config';
-import express, { Request, Response } from 'express';
+import express from 'express';
+import useMiddleware from './middlewares';
+import router from './routes';
 
-// Create a new express application instance
 const app = express();
 
-// Set the network port
 const port = process.env.PORT || 3000;
 
-// Define the root path with a greeting message
-app.get('/', async (req: Request, res: Response) => {
-  res.json({
-    error: false,
-    message: 'Welcome to the Express + TypeScript Server!',
-  });
-});
+useMiddleware(app);
 
-// Start the Express server
+app.use(router);
+
 const server = app.listen(port, () => {
   console.log(`The server is running at http://localhost:${port}`);
 });
 
-export default server;
+type TExpressApp = typeof app;
+export { server, TExpressApp };
