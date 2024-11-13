@@ -1,10 +1,11 @@
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 import cors from 'cors';
 import { TExpressApp } from '..';
+import { json, urlencoded } from 'express';
 
 const useMiddleware = (app: TExpressApp) => {
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded());
+  app.use(json());
+  app.use(urlencoded());
   app.use(cors());
 };
 

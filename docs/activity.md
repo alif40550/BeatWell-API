@@ -1,4 +1,4 @@
-# Activity
+# foods
 
 - Method: **GET**
 - Endpoint: **/activities**
@@ -9,12 +9,13 @@
 {
     "status":200,
     "body":{
-        "message":string,
+        "message":'berhasil mendapatkan list foods',
         "error":false,
         "data":[
             {
                 "id":string,
                 "name":string,
+                "recipe":string
             },
             ...
         ]
@@ -29,7 +30,7 @@
 {
     "status":400,
     "body":{
-        "message":string,
+        "message":'gagal mendapatkan list foods',
         "error":true,
     },
     ...
@@ -42,7 +43,7 @@
 {
     "status":200,
     "body":{
-        "message":string,
+        "message":'berhasil mendapatkan list foods',
         "error":false,
         "data":[]
     },
