@@ -31,3 +31,16 @@
     "status":400,
 }
 ```
+
+## Responses (Empty)
+
+```json
+{
+    "body":{
+        "message":string,
+        "error":false,
+        "data":[]
+    },
+    "status":200,
+}
+```
