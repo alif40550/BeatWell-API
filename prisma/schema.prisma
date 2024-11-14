@@ -19,8 +19,8 @@ model User {
   image String
   email String
   token String
-  histories History[]
-  healthProfiles HealthProfile[]
+  history History[]
+  healthProfile HealthProfile[]
 }
 model Activity{
   id Int @id
