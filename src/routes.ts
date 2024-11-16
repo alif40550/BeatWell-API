@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { getAllFoods, getDetailedFood } from './controllers/foodController';
-import { getAllFoods, getDetailedFood } from './controller/foodController';
-import { getActivity } from './controller/activityController';
+import { getActivity } from './controllers/activityController';
 
 const router = Router();
 
