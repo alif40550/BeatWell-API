@@ -96,3 +96,16 @@
     ...
 }
 ```
+
+## Responses (Unauthorize)
+
+```json
+{
+    "status":401,
+    "body":{
+        "message":'unauthorize',
+        "error":true,
+    },
+    ...
+}
+```
