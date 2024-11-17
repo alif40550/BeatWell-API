@@ -42,7 +42,7 @@ const signIn = async (req: Request, res: Response) => {
     };
 
     const token = jwt.sign(payload, process.env.JWT_SECRET!, {
-      expiresIn: '1M',
+      expiresIn: '30 days',
     });
 
     res.status(200).json({
@@ -92,13 +92,6 @@ const signUp = async (req: Request, res: Response) => {
       error: true,
     });
   }
-  //   if (!validatedBody) {
-  //     res.status(400).json({
-  //       message: 'Email and password are required',
-  //       error: true,
-  //     });
-  //     return;
-  //   }
 };
 
 export { signIn, signUp };
