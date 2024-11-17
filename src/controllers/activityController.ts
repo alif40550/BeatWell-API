@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import prisma from '../libs/db';
+import prisma from '../libs/prisma';
 
 const getActivity = async (req: Request, res: Response) => {
   const randomNum = Math.floor(Math.random() * 100) + 1;

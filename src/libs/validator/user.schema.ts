@@ -10,3 +10,14 @@ export const userResponseSchema = z.object({
   name: z.string(),
   email: z.string().email(),
 });
+
+export const userSignInSchema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
+export const userSignUpSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+});

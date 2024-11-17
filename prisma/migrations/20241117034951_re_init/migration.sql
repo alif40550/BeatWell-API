@@ -1,37 +1,37 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE `User` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NULL,
+    `image` VARCHAR(191) NULL,
+    `email` VARCHAR(191) NOT NULL,
+    `password` VARCHAR(191) NULL,
+    `token` VARCHAR(191) NULL,
 
-  - Added the required column `email` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `image` to the `User` table without a default value. This is not possible if the table is not empty.
-  - Added the required column `token` to the `User` table without a default value. This is not possible if the table is not empty.
-
-*/
--- AlterTable
-ALTER TABLE `user` ADD COLUMN `email` VARCHAR(191) NOT NULL,
-    ADD COLUMN `image` VARCHAR(191) NOT NULL,
-    ADD COLUMN `token` VARCHAR(191) NOT NULL;
+    UNIQUE INDEX `User_email_key`(`email`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Acticity` (
-    `id` INTEGER NOT NULL,
+CREATE TABLE `Activity` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `detail` VARCHAR(191) NOT NULL,
+    `detail` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Food` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL,
-    `recipe` VARCHAR(191) NOT NULL,
+    `recipe` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `History` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
 
     INDEX `History_userId_idx`(`userId`),
@@ -40,7 +40,7 @@ CREATE TABLE `History` (
 
 -- CreateTable
 CREATE TABLE `HealthProfile` (
-    `id` INTEGER NOT NULL,
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `userId` INTEGER NOT NULL,
 
     INDEX `HealthProfile_userId_idx`(`userId`),
