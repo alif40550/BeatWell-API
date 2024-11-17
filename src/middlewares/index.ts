@@ -16,7 +16,7 @@ const accessValidation = (req: Request, res: Response, next: NextFunction) => {
 
   //   const token = authorization.split(' ')[1];
   const secret = process.env.JWT_SECRET!;
-  console.log(secret);
+  // console.log(secret);
 
   try {
     const jwtDecode = jwt.verify(authorization, secret);

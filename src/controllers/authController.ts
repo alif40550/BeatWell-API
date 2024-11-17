@@ -16,7 +16,7 @@ const signIn = async (req: Request, res: Response) => {
 
     if (!user) {
       res.status(400).json({
-        message: 'eamil or password incorrect',
+        message: 'eamil or password is invalid',
         error: true,
       });
       return;
@@ -29,7 +29,7 @@ const signIn = async (req: Request, res: Response) => {
 
     if (!passwordCorrcet) {
       res.status(400).json({
-        message: 'eamil or password incorrect',
+        message: 'eamil or password is invalid',
         error: true,
       });
       return;
@@ -48,12 +48,11 @@ const signIn = async (req: Request, res: Response) => {
     res.status(200).json({
       message: 'Login success',
       error: false,
-      data: payload,
-      token,
+      data: { ...payload, token },
     });
   } catch {
     res.status(400).json({
-      message: 'Email and password are required',
+      message: 'Email or password is invalid',
       error: true,
     });
   }
@@ -89,7 +88,7 @@ const signUp = async (req: Request, res: Response) => {
     });
   } catch {
     res.status(400).json({
-      message: 'Email and password are required',
+      message: 'Your credential is not valid',
       error: true,
     });
   }

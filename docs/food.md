@@ -4,6 +4,13 @@
 
 - Method: **GET**
 - Endpoint: **/foods**
+- Headers:
+
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
 
 ## Responses (Success)
 
@@ -52,6 +59,7 @@
     ...
 }
 ```
+
 ## Get Detail Foods
 
 - Method: **GET**
@@ -75,6 +83,7 @@
     ...
 }
 ```
+
 ## Responses (Failed)
 
 ```json
