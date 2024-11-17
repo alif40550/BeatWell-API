@@ -5,6 +5,15 @@
 - Method: **POST**
 - Endpoint: **/login**
 
+### Request Body
+
+```json
+{
+  "email": "balya@gmail.com",
+  "password": "balya"
+}
+```
+
 ### Response (Success)
 
 ```json
@@ -39,6 +48,15 @@
 
 - Method: **POST**
 - Endpoint: **/register**
+
+### Request Body
+```json
+{
+  "name": "balya",
+  "email": "balya@gmail.com",
+  "password": "balya"
+}
+```
 
 ### Response (Success)
 
