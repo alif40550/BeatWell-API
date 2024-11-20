@@ -34,7 +34,8 @@ This is a description of the model
     "message": "Prediction success",
     "error": false,
     "data": {
-      "prediction": 0 //tidak terkena CHD (interval 0-1)
+      "prediction": "0%", //tidak terkena CHD (buat persen sajah)
+      "description": "tidak CHD"
     }
   }
 }
@@ -47,7 +48,7 @@ This is a description of the model
   "status": 400,
   "body": {
     "message": "Prediction failed",
-    "error": true,
+    "error": true
   }
 }
 ```
