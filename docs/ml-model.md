@@ -9,13 +9,13 @@ This is a description of the model
 
 ```json
 {
-  "sex": 1, //male
+  "sex": "male", //male = 1 female = 0
   "age": 45,
   "cigsPerDay": 10, // 10 rokok per hari
-  "BPMeds": 0, //tidak menggunakan obat tekanan darah
-  "prevalentStroke": 0, //tidak ada riwayat stroke
-  "prevalentHyp": 1, //ada riwayat hipertensi
-  "diabetes": 1, //ada riwayat diabetes
+  "BPMeds": false, //tidak menggunakan obat tekanan darah
+  "prevalentStroke": false, //tidak ada riwayat stroke
+  "prevalentHyp": true, //ada riwayat hipertensi
+  "diabetes": true, //ada riwayat diabetes
   "totChol": 250, //kolesterol total 250 mg/dl
   "sysBP": 140, //tekanan darah sistolik 140 mmHg
   "diaBP": 90, //tekanan darah diastolik 90 mmHg

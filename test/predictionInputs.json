@@ -1,0 +1,15 @@
+{
+  "sex": 1,
+  "age": 45,
+  "cigsPerDay": 10,
+  "BPMeds": 0,
+  "prevalentStroke": 0,
+  "prevalentHyp": 1,
+  "diabetes": 1,
+  "totChol": 250,
+  "sysBP": 140,
+  "diaBP": 90,
+  "BMI": 30.5,
+  "heartRate": 80,
+  "glucose": 120
+}
