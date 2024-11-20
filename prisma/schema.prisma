@@ -38,7 +38,9 @@ model Food{
 model History{
   id Int @id @default(autoincrement())
   userId Int
+  result Int
   user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
 
   @@index([userId])
 }
