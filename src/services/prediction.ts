@@ -1,8 +1,15 @@
 import * as tf from '@tensorflow/tfjs';
+import { PREDICTION_MODEL_URL } from '../utils/env';
 
 const loadModel = async () => {
-  const modelUrl = process.env.PREDICTION_MODEL_URL!;
+  const modelUrl = PREDICTION_MODEL_URL;
+  try {
+    await tf.loadLayersModel(modelUrl);
+  } catch (error) {
+    console.log('🚀 ~ loadModel ~ error:', error);
+  }
   const model = await tf.loadLayersModel(modelUrl, { strict: false });
+  console.log('🚀 ~ loadModel ~ modelUrl:', modelUrl);
   return model;
 };
 
@@ -13,7 +20,7 @@ const makePrediction = async (userData: number[]) => {
     const result = await outputTensor.data();
     return result[0] as number;
   });
-  return data * 100;
+  return Math.round(data * 100);
 };
 
 export default makePrediction;
