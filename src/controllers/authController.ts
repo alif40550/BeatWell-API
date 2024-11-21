@@ -4,6 +4,7 @@ import prisma from '../libs/prisma';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserData } from '../models/user';
+import { JWT_SECRET } from '../utils/env';
 
 const signIn = async (req: Request, res: Response) => {
   try {
@@ -41,7 +42,7 @@ const signIn = async (req: Request, res: Response) => {
       email: user.email,
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET!, {
+    const token = jwt.sign(payload, JWT_SECRET!, {
       expiresIn: '30 days',
     });
 

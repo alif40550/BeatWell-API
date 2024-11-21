@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { UserData, ValidationRequest } from '../models/user';
 import jwt from 'jsonwebtoken';
+import { JWT_SECRET } from '../utils/env';
 
 const accessValidation = (req: Request, res: Response, next: NextFunction) => {
   const validationReq = req as ValidationRequest;
@@ -15,7 +16,7 @@ const accessValidation = (req: Request, res: Response, next: NextFunction) => {
   }
 
   //   const token = authorization.split(' ')[1];
-  const secret = process.env.JWT_SECRET!;
+  const secret = JWT_SECRET!;
   // console.log(secret);
 
   try {
