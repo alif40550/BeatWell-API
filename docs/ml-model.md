@@ -2,8 +2,12 @@
 
 This is a description of the model
 
-- Endpoint: **menyusul**
+- Endpoint: **/prediction**
 - Method: **POST**
+
+## Request Header
+
+- Authorization: **token**
 
 ## Request Body
 
@@ -11,7 +15,7 @@ This is a description of the model
 {
   "sex": "male", //male = 1 female = 0
   "age": 45,
-  "cigsPerDay": 10, // 10 rokok per hari
+  "cigsPerday": 10, // 10 rokok per hari
   "BPMeds": false, //tidak menggunakan obat tekanan darah
   "prevalentStroke": false, //tidak ada riwayat stroke
   "prevalentHyp": true, //ada riwayat hipertensi
