@@ -29,12 +29,6 @@ model Activity{
   detail String?
 }
 
-model Food{
-  id Int @id @default(autoincrement())
-  name String
-  recipe String?
-}
-
 model History{
   id Int @id @default(autoincrement())
   userId Int
