@@ -11,8 +11,20 @@ export const predictCHD = async (req: Request, res: Response) => {
   const user = jwt.verify(token, JWT_SECRET!) as UserData;
   // try {
   const validatedBody = predictionSchema.parse(req.body);
+  const sexMap = {
+    male: 1,
+    female: 0,
+  } as const;
+  const sex = sexMap[validatedBody.sex.toLowerCase() as keyof typeof sexMap];
+  if (sex === undefined) {
+    res.status(400).json({
+      message: 'Prediction failed, there are incorrect request',
+      error: true,
+    });
+    return;
+  }
   const input: number[] = [
-    validatedBody.sex === 'male' ? 1 : 0,
+    sex,
     validatedBody.age,
     Number(validatedBody.cigsPerday > 0),
     validatedBody.cigsPerday,
