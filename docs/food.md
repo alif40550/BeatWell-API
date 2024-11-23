@@ -24,7 +24,8 @@
             {
                 "id":string,
                 "name":string,
-                "recipe":string
+                "recipe":string,
+                "bahan": string,
             },
             ...
         ]
@@ -52,7 +53,7 @@
 {
     "status":200,
     "body":{
-        "message":'berhasil mendapatkan list activity',
+        "message":'berhasil mendapatkan list food',
         "error":false,
         "data":[]
     },
