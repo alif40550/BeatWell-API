@@ -39,6 +39,11 @@ model History{
   @@index([userId])
 }
 
+model Trivia{
+  id Int @id @default(autoincrement())
+  trivia String
+}
+
 model HealthProfile{
   id Int @id @default(autoincrement())
   userId Int
