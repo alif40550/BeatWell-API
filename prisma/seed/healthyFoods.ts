@@ -1,5 +1,5 @@
 import prisma from '../../src/libs/prisma';
-import data from './data/healthyFood.json';
+import data from './data/processedHealthyFoods.json';
 
 const seedHealthyFoods = async () => {
   await prisma.healthyFood.createMany({
