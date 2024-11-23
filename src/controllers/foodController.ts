@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import prisma from '../libs/prisma';
+import { randNum } from '../services/randNum';
 
 export const getRandomFoods = async (req: Request, res: Response) => {
   let randomIds = new Array();
   for (let i = 0; i < 6; i++) {
-    let randNum = Math.floor(Math.random() * (329 - 1 + 1)) + 1;
-    randomIds.push(randNum);
+    let randId = randNum(329)
+    randomIds.push(randId);
   }
 
   const food = await prisma.healthyFood.findMany({
