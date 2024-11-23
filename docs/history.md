@@ -14,7 +14,7 @@
         "data":[
             {
                 "id":string,
-                "status":boolean,
+                "result":boolean,
                 "last_checked":date
             },
             ...

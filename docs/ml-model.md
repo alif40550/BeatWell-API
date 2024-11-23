@@ -38,8 +38,7 @@ This is a description of the model
     "message": "Prediction success",
     "error": false,
     "data": {
-      "prediction": "0%", //tidak terkena CHD (buat persen sajah)
-      "description": "tidak CHD"
+      "prediction": 0 //tidak terkena CHD (buat persen sajah)
     }
   }
 }
