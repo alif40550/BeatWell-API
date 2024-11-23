@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import prisma from '../libs/prisma';
 
-const getActivity = async (req: Request, res: Response) => {
+export const getActivity = async (req: Request, res: Response) => {
   const randomNum = Math.floor(Math.random() * 100) + 1;
 
   const activity = await prisma.activity.findUnique({
@@ -24,5 +24,3 @@ const getActivity = async (req: Request, res: Response) => {
   });
   return;
 };
-
-export { getActivity };

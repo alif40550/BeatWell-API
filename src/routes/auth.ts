@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getAllFoods, getDetailedFood } from '../controllers/foodController';
+import { getRandomFoods, getDetailedFood } from '../controllers/foodController';
 import { getActivity } from '../controllers/activityController';
 import { accessValidation } from '../middlewares';
 import { predictCHD } from '../controllers/modelController';
@@ -8,7 +8,7 @@ import { getById, indexUserHistories } from '../controllers/historyController';
 const router = Router();
 
 router.use(accessValidation);
-router.get('/foods', getAllFoods);
+router.get('/foods', getRandomFoods);
 router.get('/foods/:id', getDetailedFood);
 router.get('/foods/{id}', getDetailedFood);
 router.get('/activity', getActivity);

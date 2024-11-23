@@ -6,7 +6,7 @@ import jwt from 'jsonwebtoken';
 import { UserData } from '../models/user';
 import { JWT_SECRET } from '../utils/env';
 
-const signIn = async (req: Request, res: Response) => {
+export const signIn = async (req: Request, res: Response) => {
   try {
     const validatedBody = userSignInSchema.parse(req.body);
     const user = await prisma.user.findFirst({
@@ -59,7 +59,7 @@ const signIn = async (req: Request, res: Response) => {
   }
 };
 
-const signUp = async (req: Request, res: Response) => {
+export const signUp = async (req: Request, res: Response) => {
   try {
     const validatedBody = userSignInSchema.parse(req.body);
     const isExisted = await prisma.user.findFirst({
@@ -94,5 +94,3 @@ const signUp = async (req: Request, res: Response) => {
     });
   }
 };
-
-export { signIn, signUp };
