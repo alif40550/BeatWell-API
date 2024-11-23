@@ -10,6 +10,7 @@
     "start": "npx tsx src/index.ts",
     "lint": "eslint ./",
     "db-migrate": "npx prisma migrate dev",
+    "db-seed": "npx tsx prisma/seed/index.ts",
     "postinstall": "npx prisma generate"
   },
   "author": "",
