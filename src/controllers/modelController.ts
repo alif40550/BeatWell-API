@@ -5,6 +5,7 @@ import { predictionSchema } from '../libs/validator/prediction.schema';
 import { makePrediction } from '../services/prediction';
 import { addHistory } from '../services/history';
 import { JWT_SECRET } from '../utils/env';
+import { getResponse, predictClass } from '../services/chatbot';
 
 export const predictCHD = async (req: Request, res: Response) => {
   const token = req.headers.authorization!;
@@ -58,4 +59,24 @@ export const predictCHD = async (req: Request, res: Response) => {
   //   data: err
   // });
   // }
+};
+
+export const chat = async (req: Request, res: Response) => {
+  const { message } = req.body;
+
+  if (!message) {
+    res.status(400).json({
+      error: true,
+      message: 'Pesan tidak boleh kosong',
+    });
+    return;
+  }
+
+  const tag = await predictClass(message);
+  const response = getResponse(tag);
+  res.json({
+    message: 'OK',
+    error: false,
+    data: response,
+  });
 };
