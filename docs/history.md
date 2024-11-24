@@ -1,7 +1,7 @@
 # History
 
 - Method: **GET**
-- Endpoint: **/histories**
+- Endpoint: **/users/{id}/histories**
 
 ## Responses (Success)
 
