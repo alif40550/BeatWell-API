@@ -3,7 +3,7 @@ import prisma from '../libs/prisma';
 import { randNum } from '../services/randNum';
 
 export const getTrivia = async (req: Request, res: Response) => {
-  let randId = randNum(191);
+  const randId = randNum(100);
 
   const trivia = await prisma.trivia.findFirst({
     where: {
