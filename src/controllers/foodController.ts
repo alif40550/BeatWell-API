@@ -20,7 +20,7 @@ export const getRandomFoods = async (req: Request, res: Response) => {
   res.status(200).json({
     message: 'berhasil mendapapatkan data food',
     error: false,
-    data: [food],
+    data: food,
   });
   return;
 };
