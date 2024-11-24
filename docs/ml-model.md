@@ -1,7 +1,5 @@
 # CHD Prediction Model
 
-This is a description of the model
-
 - Endpoint: **/prediction**
 - Method: **POST**
 
@@ -51,6 +49,48 @@ This is a description of the model
   "status": 400,
   "body": {
     "message": "Prediction failed",
+    "error": true
+  }
+}
+```
+
+# Chatbot Model
+
+- Endpoint: **/prediction**
+- Method: **POST**
+
+## Request Header
+
+- Authorization: **token**
+
+## Request Body
+
+```json
+{
+  "message":"haloooooo"
+}
+```
+
+## Response (Success)
+
+```json
+{
+  "status": 200,
+  "body": {
+    "message": "Prediction success",
+    "error": false,
+    "data": "response"
+  }
+}
+```
+
+## Response (Error)
+
+```json
+{
+  "status": 400,
+  "body": {
+    "message": "message tidak boleh kososng",
     "error": true
   }
 }
