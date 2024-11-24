@@ -16,7 +16,7 @@ router.get('/activity', getActivity);
 router.post('/prediction', predictCHD);
 router.get('/histories', indexUserHistories);
 router.get('/histories/:id', getById);
-router.get('/trivia', getTrivia)
+router.get('/trivia', getTrivia);
 // !! INI MAU DIBUAT YANG BISA HAPUS HANYA USER SENDIRI APA TIDAK?
 router.delete('/histories/:id', getById);
 
