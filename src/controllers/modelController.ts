@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserData } from '../models/user';
 import { predictionSchema } from '../libs/validator/prediction.schema';
-import makePrediction from '../services/prediction';
+import { makePrediction } from '../services/prediction';
 import { addHistory } from '../services/history';
 import { JWT_SECRET } from '../utils/env';
 
