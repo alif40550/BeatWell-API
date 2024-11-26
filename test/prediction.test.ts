@@ -1,6 +1,8 @@
-// import request from 'supertest';
-import { server } from '../src';
 import { makePrediction, signIn } from './services';
+import startServer from '../src/libs/server';
+
+const server = startServer();
+
 
 beforeAll(() => {});
 

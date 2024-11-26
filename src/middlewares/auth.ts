@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { UserData, ValidationRequest } from '../models/user';
+import { UserData, ValidationRequest } from '../models/User';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../utils/env';
 

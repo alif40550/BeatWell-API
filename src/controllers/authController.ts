@@ -1,19 +1,13 @@
 import { Request, Response } from 'express';
-import { userSignInSchema } from '../libs/validator/user.schema';
-import prisma from '../libs/prisma';
+import { userSignInSchema, userSignUpSchema } from '../libs/validator/user.schema';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { UserData } from '../models/user';
-import { JWT_SECRET } from '../utils/env';
+import { createPayload, createUser, getUser } from '../services/user';
+import { generateToken } from '../libs/jwt';
 
 export const signIn = async (req: Request, res: Response) => {
   try {
     const validatedBody = userSignInSchema.parse(req.body);
-    const user = await prisma.user.findFirst({
-      where: {
-        email: validatedBody.email,
-      },
-    });
+    const user = await getUser(validatedBody.email);
 
     if (!user) {
       res.status(400).json({
@@ -36,15 +30,9 @@ export const signIn = async (req: Request, res: Response) => {
       return;
     }
 
-    const payload: UserData = {
-      id: user.id,
-      name: user.name || user.email.split('@')[0],
-      email: user.email,
-    };
+    const payload = createPayload(user);
 
-    const token = jwt.sign(payload, JWT_SECRET!, {
-      expiresIn: '30 days',
-    });
+    const token = generateToken(payload);
 
     res.status(200).json({
       message: 'Login success',
@@ -61,12 +49,8 @@ export const signIn = async (req: Request, res: Response) => {
 
 export const signUp = async (req: Request, res: Response) => {
   try {
-    const validatedBody = userSignInSchema.parse(req.body);
-    const isExisted = await prisma.user.findFirst({
-      where: {
-        email: validatedBody.email,
-      },
-    });
+    const validatedBody = userSignUpSchema.parse(req.body);
+    const isExisted = await getUser(validatedBody.email);
 
     if (isExisted) {
       res.status(400).json({
@@ -76,12 +60,7 @@ export const signUp = async (req: Request, res: Response) => {
       return;
     }
 
-    await prisma.user.create({
-      data: {
-        email: validatedBody.email,
-        password: await bcrypt.hash(validatedBody.password, 10),
-      },
-    });
+    await createUser(validatedBody);
 
     res.status(200).json({
       message: 'Sign up success',

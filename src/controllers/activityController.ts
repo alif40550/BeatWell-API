@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import prisma from '../libs/prisma';
-import { randNum } from '../services/randNum';
+import { randNum } from '../utils/number';
 
 export const getActivity = async (req: Request, res: Response) => {
   const randId = randNum(10);

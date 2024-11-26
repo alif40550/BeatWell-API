@@ -6,6 +6,6 @@ export type History = {
 export type HistoryResponse = {
   id: number;
   userId: number;
-  result: string;
+  result: number;
   createdAt: Date;
 };

@@ -1,15 +1,13 @@
 import { Request, Response } from 'express';
-import prisma from '../libs/prisma';
-import { randNum } from '../services/randNum';
+import { randNum } from '../utils/number';
+import { getFoodById, getRandomFoods } from '../services/food';
 
-export const getRandomFoods = async (req: Request, res: Response) => {
-  const food = await prisma.healthyFood.findMany({
-    where: {
-      id: { in: Array.from({ length: 6 }, () => randNum(329)) },
-    },
-  });
+export const indexRandomFoods = async (req: Request, res: Response) => {
+  const id = randNum(329);
+  const { limit } = req.params || 6;
+  const foods = await getRandomFoods(id, Number(limit));
 
-  if (!food) {
+  if (!foods) {
     res.status(404).json({
       message: 'Gagal mendapatkan data food',
       error: true,
@@ -20,7 +18,7 @@ export const getRandomFoods = async (req: Request, res: Response) => {
   res.status(200).json({
     message: 'berhasil mendapapatkan data food',
     error: false,
-    data: food,
+    data: foods,
   });
   return;
 };
@@ -28,13 +26,7 @@ export const getRandomFoods = async (req: Request, res: Response) => {
 export const getDetailedFood = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  if (!id) return;
-
-  const food = await prisma.healthyFood.findUnique({
-    where: {
-      id: Number(id),
-    },
-  });
+  const food = await getFoodById(Number(id));
 
   if (!food) {
     res.status(404).json({

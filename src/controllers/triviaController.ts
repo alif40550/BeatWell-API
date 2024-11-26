@@ -1,17 +1,13 @@
 import { Request, Response } from 'express';
-import prisma from '../libs/prisma';
-import { randNum } from '../services/randNum';
+import { randNum } from '../utils/number';
+import { getTriviaById } from '../services/trivia';
 
 export const getTrivia = async (req: Request, res: Response) => {
   const randId = randNum(100);
 
-  const trivia = await prisma.trivia.findFirst({
-    where: {
-      id: randId,
-    },
-  });
+  const data = await getTriviaById(randId);
 
-  if (!trivia) {
+  if (!data) {
     res.status(404).json({
       message: 'trivia gagal didapatkan',
       error: true,
@@ -23,8 +19,7 @@ export const getTrivia = async (req: Request, res: Response) => {
     message: 'berhasil mendapapatkan trivia',
     error: false,
     data: {
-      trivia: trivia.trivia,
+      trivia: data.trivia,
     },
   });
-  return;
 };

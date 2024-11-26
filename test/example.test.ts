@@ -1,5 +1,7 @@
 import request from 'supertest';
-import { server } from '../src';
+import startServer from '../src/libs/server';
+
+const server = startServer();
 
 afterAll(() => {
   server.close();

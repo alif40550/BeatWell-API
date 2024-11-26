@@ -1,28 +1,27 @@
-// import * as tf from '@tensorflow/tfjs-node';
-import * as tf from '@tensorflow/tfjs';
-import { CHATBOT_CLASSES_URL, CHATBOT_INTENTS_URL, CHATBOT_MODEL_URL, CHATBOT_WORDS_URL } from '../utils/env';
-import fs from 'fs';
+import tf from '../libs/tfjs';
 import natural from 'natural';
+import { initiateModel, readJSON } from './model';
+import { TIntent, TIntents } from '../models/Model';
+import {
+  CHATBOT_CLASSES_URL,
+  CHATBOT_INTENTS_URL,
+  CHATBOT_MODEL_URL,
+  CHATBOT_WORDS_URL,
+} from '../utils/env';
+
+
 
 let model: tf.LayersModel;
 
 const lemmatizer = (text: string) => natural.StemmerId.stem(text);
 
-const intents = JSON.parse(fs.readFileSync(CHATBOT_INTENTS_URL, 'utf-8'));
-const words = JSON.parse(fs.readFileSync(CHATBOT_WORDS_URL, 'utf-8')) as string[];
-const classes = JSON.parse(fs.readFileSync(CHATBOT_CLASSES_URL, 'utf-8')) as string[];
-
-type TIntent = {
-  tag: string;
-}
+const { intents }: TIntents = readJSON(CHATBOT_INTENTS_URL);
+// console.log('🚀 ~ intents:', intents);
+const words = readJSON(CHATBOT_WORDS_URL) as string[];
+const classes = readJSON(CHATBOT_CLASSES_URL) as string[];
 
 export const loadModel = async () => {
-  const modelUrl = CHATBOT_MODEL_URL;
-  try {
-    model = await tf.loadLayersModel(modelUrl);
-  } catch (error) {
-    console.log('🚀 ~ loadModel ~ error:', error);
-  }
+  model = await initiateModel(CHATBOT_MODEL_URL);
 };
 
 const cleanUpSentence = (sentence: string) => {
@@ -54,7 +53,9 @@ export const predictClass = async (sentence: string) => {
 };
 
 export const getResponse = (tag: string) => {
-  const intent = intents.intents.find((intent: TIntent) => intent.tag === tag);
+  console.log('🚀 ~ getResponse ~ tag:', tag);
+  const intent = intents.find((intent: TIntent) => intent.tag === tag);
+  console.log('🚀 ~ getResponse ~ intent:', intent);
   if (intent) {
     return intent.responses[
       Math.floor(Math.random() * intent.responses.length)

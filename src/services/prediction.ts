@@ -1,16 +1,12 @@
-// import * as tf from '@tensorflow/tfjs-node';
-import * as tf from '@tensorflow/tfjs';
+import tf from '../libs/tfjs';
 import { PREDICTION_MODEL_URL } from '../utils/env';
+import { initiateModel } from './model';
 
 let model: tf.LayersModel;
+const modelUrl = PREDICTION_MODEL_URL;
 
 export const loadModel = async () => {
-  const modelUrl = PREDICTION_MODEL_URL;
-  try {
-    model = await tf.loadLayersModel(modelUrl);
-  } catch (error) {
-    console.log('🚀 ~ loadModel ~ error:', error);
-  }
+  model = await initiateModel(modelUrl);
 };
 
 const standardScaler = (data: number[]) => {

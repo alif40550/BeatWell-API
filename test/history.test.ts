@@ -1,7 +1,8 @@
-// import request from 'supertest';
-import { server } from '../src';
 import { HistoryResponse } from '../src/models/History';
 import { getHistories, signIn } from './services';
+import startServer from '../src/libs/server';
+
+const server = startServer();
 
 beforeAll(() => {});
 
