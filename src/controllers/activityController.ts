@@ -1,13 +1,9 @@
 import { Request, Response } from 'express';
-import prisma from '../libs/prisma';
 import { randNum } from '../utils/number';
+import { getActivityById } from '../services/activity';
 
 export const getActivity = async (req: Request, res: Response) => {
-  const activity = await prisma.activity.findUnique({
-    where: {
-      id: randNum(10),
-    },
-  });
+  const activity = await getActivityById(randNum(100));
 
   if (!activity) {
     res.status(400).json({
