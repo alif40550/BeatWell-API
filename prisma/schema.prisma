@@ -27,7 +27,7 @@ model Activity{
   id Int @id @default(autoincrement())
   name String
   image String
-  detail String?
+  detail String
 }
 
 model History{
