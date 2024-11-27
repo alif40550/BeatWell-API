@@ -1,12 +1,9 @@
 import { Request, Response } from 'express';
-import { randNum } from '../utils/number';
 import { getFoodById, getRandomFoods } from '../services/food';
 
 export const indexRandomFoods = async (req: Request, res: Response) => {
-  const id = randNum(329);
-  const { limit } = req.params || 6;
-  const foods = await getRandomFoods(id, Number(limit));
-
+  const limit = (req.params && req.params.limit) || 6;
+  const foods = await getRandomFoods(329, Number(limit));
   if (!foods) {
     res.status(404).json({
       message: 'Gagal mendapatkan data food',

@@ -1,10 +1,11 @@
 import prisma from '../libs/prisma';
+import { randNum } from '../utils/number';
 
 export const getRandomFoods = async (n: number, limit: number) =>
   await prisma.healthyFood.findMany({
     where: {
       id: {
-        in: Array.from({ length: limit }, () => n),
+        in: Array.from({ length: limit }, () => randNum(n)),
       },
     },
   });
