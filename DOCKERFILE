@@ -12,7 +12,7 @@ RUN npm install
 RUN npm run lint
 
 # RUN npm run test
-# Expose port 5173
-EXPOSE 5173
+# Expose port 8080
+EXPOSE 8080
 
 CMD ["npm", "run", "start"]
