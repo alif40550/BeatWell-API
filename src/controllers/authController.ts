@@ -66,9 +66,9 @@ export const signUp = async (req: Request, res: Response) => {
       message: 'Sign up success',
       error: false,
     });
-  } catch {
+  } catch (err){
     res.status(400).json({
-      message: 'Your credential is not valid',
+      message: `Your credential is not valid ${err}`,
       error: true,
     });
   }
