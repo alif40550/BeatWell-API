@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import authenticatedRoute from './restricted';
 import { signIn, signUp } from '../controllers/authController';
+import { deleteUser } from '../controllers/userController';
 
 const router = Router();
 
