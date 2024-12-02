@@ -1,31 +1,25 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { JWT_SECRET } from '../utils/env';
+import { UserData } from '../models/User';
+import prisma from '../libs/prisma';
 
-export const deleteUser = (req: Request, res: Response) => {
-  const authorization = req.headers.authorization;
+export const deleteUser = async (req: Request, res: Response) => {
+  const token = req.headers.authorization;
 
-  if (!authorization) {
-    return res.status(401).json({ error: 'Authorization header missing' });
-  }
+  const decoded = jwt.verify(token!, JWT_SECRET!);
 
-  // Remove 'Bearer ' prefix if present
-  const token = authorization.startsWith('Bearer ')
-    ? authorization.slice(7)
-    : authorization;
-
-  if (!JWT_SECRET) {
-    throw new Error(
-      'JWT_SECRET is not defined. Check your environment configuration.'
-    );
-  }
-  // Verify the token
-  const decoded = jwt.verify(token, JWT_SECRET);
-
-  // Access the `id` from the decoded payload
   if (typeof decoded !== 'string') {
-    const userId = (decoded as { id: Number }).id;
-    console.log(userId);
+    const { id } = decoded as UserData;
+    console.log(id);
+    await prisma.user.delete({
+      where: { id },
+    });
+
+    res.status(200).json({
+      message: 'User deleted successfully',
+      error: false,
+    });
     return;
   }
 };
