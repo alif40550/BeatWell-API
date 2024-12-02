@@ -1,25 +1,28 @@
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../utils/env';
-import { UserData } from '../models/User';
-import prisma from '../libs/prisma';
+import { ValidationRequest } from '../models/User';
+import { destroyUser, reviseUser } from '../services/user';
 
-export const deleteUser = async (req: Request, res: Response) => {
-  const token = req.headers.authorization;
+export const deleteCurrentUser = async (req: Request, res: Response) => {
+  const request = req as ValidationRequest;
+  const { id } = request.userData;
 
-  const decoded = jwt.verify(token!, JWT_SECRET!);
+  await destroyUser(id);
 
-  if (typeof decoded !== 'string') {
-    const { id } = decoded as UserData;
-    console.log(id);
-    await prisma.user.delete({
-      where: { id },
-    });
+  res.status(200).json({
+    message: 'User deleted successfully',
+    error: false,
+  });
+};
 
-    res.status(200).json({
-      message: 'User deleted successfully',
-      error: false,
-    });
-    return;
-  }
+export const updateCurrentUser = async (req: Request, res: Response) => {
+  const request = req as ValidationRequest;
+  const { id } = request.userData;
+  const { name, email, password } = request.body;
+
+  await reviseUser(id, { name, email, password });
+
+  res.status(200).json({
+    message: 'User updated successfully',
+    error: false,
+  });
 };
