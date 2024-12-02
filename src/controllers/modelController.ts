@@ -7,6 +7,7 @@ import { getResponse, predictClass } from '../services/chatbot';
 import { verifyToken } from '../libs/jwt';
 import { sexMap } from '../models/Model';
 import { formatInput, formatSex } from '../services/model';
+import { bmiCalculator } from '../services/bmi';
 
 export const predictCHD = async (req: Request, res: Response) => {
   const token = req.headers.authorization!;
@@ -23,6 +24,12 @@ export const predictCHD = async (req: Request, res: Response) => {
       });
       return;
     }
+
+    validatedBody.BMI = bmiCalculator(
+      validatedBody.height,
+      validatedBody.weight
+    );
+
     const input = formatInput({ ...validatedBody, sex });
     const persentage = await makePrediction(input);
 

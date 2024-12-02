@@ -12,6 +12,8 @@ export const predictionSchema = z.object({
   sysBP: z.number(),
   diaBP: z.number(),
   BMI: z.number(),
+  height: z.number(),
+  weight: z.number(),
   heartRate: z.number(),
   glucose: z.number(),
 });
