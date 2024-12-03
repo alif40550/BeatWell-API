@@ -24,13 +24,13 @@ export const predictCHD = async (req: Request, res: Response) => {
       });
       return;
     }
+    const BMI = bmiCalculator(validatedBody.height, validatedBody.weight);
 
-    validatedBody.BMI = bmiCalculator(
-      validatedBody.height,
-      validatedBody.weight
-    );
-
-    const input = formatInput({ ...validatedBody, sex });
+    const input = formatInput({
+      ...validatedBody,
+      sex,
+      BMI,
+    });
     const persentage = await makePrediction(input);
 
     await addHistory({
