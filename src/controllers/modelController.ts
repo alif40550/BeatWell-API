@@ -43,7 +43,7 @@ export const predictCHD = async (req: Request, res: Response) => {
       error: false,
       data: {
         risk: persentage,
-        date: new Date(Date.now()).toString(),
+        date: new Date(Date.now()).toISOString(),
       },
     });
   } catch (err) {
