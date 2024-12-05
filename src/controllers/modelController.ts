@@ -41,7 +41,10 @@ export const predictCHD = async (req: Request, res: Response) => {
     res.status(200).json({
       message: 'Prediction success',
       error: false,
-      data: persentage,
+      data: {
+        risk: persentage,
+        date: new Date(Date.now()).toString(),
+      },
     });
   } catch (err) {
     res.status(400).json({
