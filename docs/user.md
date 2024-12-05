@@ -2,6 +2,13 @@
 
 - Method: **PATCH**
 - Endpoint: **/users**
+- Headers:
+
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
 
 ### Request Body
 ```json
@@ -29,6 +36,13 @@
       
 - Method: **DELETE**
 - Endpoint: **/users**
+- Headers:
+
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
 
 ### Response (Success)
 
