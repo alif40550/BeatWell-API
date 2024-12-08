@@ -17,6 +17,13 @@ export const deleteCurrentUser = async (req: Request, res: Response) => {
 export const updateCurrentUser = async (req: Request, res: Response) => {
   const request = req as ValidationRequest;
   const { id } = request.userData;
+
+  for (const key in request.body) {
+    if (request.body[key] === null) {
+      delete request.body[key];
+    }
+  }
+
   const { name, email, password } = request.body;
 
   await reviseUser(id, { name, email, password });

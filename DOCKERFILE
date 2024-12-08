@@ -1,10 +1,16 @@
+<<<<<<< HEAD
 # Base image with Node.js
+=======
+>>>>>>> development
 FROM node:18-bullseye
 
 # Set working directory
 WORKDIR /app
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> development
 COPY . .
 RUN npm install
 RUN npm run lint
