@@ -12,7 +12,7 @@
     "db-migrate": "npx prisma migrate dev",
     "db-seed": "npx tsx prisma/seed/index.ts",
     "postinstall": "npx prisma generate",
-    "prepare": "husky"
+    "prepare": "npx husky init"
   },
   "author": "",
   "license": "ISC",
