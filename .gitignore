@@ -3,4 +3,3 @@ node_modules
 .vscode
 prisma/migrations
 test/data
-.husky
