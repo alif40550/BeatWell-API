@@ -9,11 +9,8 @@ const port = PORT || 3000;
 app.use(parser);
 app.use(router);
 
-const startServer = () => {
-  const server = app.listen(port, () => {
-    console.log(`The server is running at http://localhost:${port}`);
-  });
-  return server;
-};
+const startServer = () => app.listen(port, () => {
+  console.log(`The server is running at http://localhost:${port}`);
+});
 
-export default startServer;
+export { app, startServer };

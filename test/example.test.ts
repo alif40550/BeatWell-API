@@ -1,7 +1,6 @@
 import request from 'supertest';
-import startServer from '../src/libs/server';
-
-const server = startServer();
+// import { server } from './services';
+import { app } from '../src/libs/server';
 
 afterAll(() => {
   // server.close();
@@ -9,7 +8,11 @@ afterAll(() => {
 
 describe('GET /', () => {
   it('should return a response with 200', async () => {
-    const res = await request(server).get('/');
+    const res = await request(app).get('/');
+    expect(res.status).toBe(200);
+  });
+  it('should return a response with 200', async () => {
+    const res = await request(app).get('/');
     expect(res.status).toBe(200);
   });
 });
