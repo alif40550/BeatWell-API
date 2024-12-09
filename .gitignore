@@ -2,3 +2,5 @@ node_modules
 .env
 .vscode
 prisma/migrations
+test/data
+.husky
