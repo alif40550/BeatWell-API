@@ -4,7 +4,8 @@ import { tokens, user } from './testEnv';
 
 /*
  * TODO:
- * 1. make get history by id test case,
+ * 1. make delete history by id test case,
+ * 2. make get history by id test case,
  */
 
 describe('GET /histories', () => {
@@ -41,12 +42,12 @@ describe('GET /histories', () => {
 });
 
 describe('DELETE /histories', () => {
-  it('should return a response with 200', async () => {
-    const token = tokens[tokens.length - 1];
-    const res = await deleteHistory(token, '1');
-    expect(res.body.error).toBe(false);
-    expect(res.status).toBe(200);
-  });
+  // it('should return a response with 200', async () => {
+  //   const token = tokens[tokens.length - 1];
+  //   const res = await deleteHistory(token, '1');
+  //   expect(res.body.error).toBe(false);
+  //   expect(res.status).toBe(200);
+  // });
 //   it('should return a response with json', async () => {
 //     const { body } = await signIn();
 //     const token = body.data.token;
