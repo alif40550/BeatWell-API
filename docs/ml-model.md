@@ -2,10 +2,13 @@
 
 - Endpoint: **/prediction**
 - Method: **POST**
+- Headers:
 
-## Request Header
-
-- Authorization: **token**
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
 
 ## Request Body
 
