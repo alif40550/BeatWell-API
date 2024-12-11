@@ -1,12 +1,14 @@
+// import { app } from '../libs/server';
 import tf from '../libs/tfjs';
+import { models } from '../models/Model';
 import { PREDICTION_MODEL_URL } from '../utils/env';
 import { initiateModel } from './model';
 
-let model: tf.LayersModel;
+// let model: tf.LayersModel;
 const modelUrl = PREDICTION_MODEL_URL;
 
 export const loadModel = async () => {
-  model = await initiateModel(modelUrl);
+  return initiateModel(modelUrl);
 };
 
 const standardScaler = (data: number[]) => {
@@ -19,10 +21,16 @@ const standardScaler = (data: number[]) => {
 };
 
 export const makePrediction = async (userData: number[]) => {
-  userData = standardScaler(userData) as number[];
-  const inputTensor = tf.tensor2d(userData, [1, 14]);
-  const outputTensor = model.predict(inputTensor) as tf.Tensor;
-  const result = await outputTensor.data();
-  const data = result[0] as number;
-  return Math.round(data * 100);
+  try {
+    userData = standardScaler(userData) as number[];
+    const inputTensor = tf.tensor2d(userData, [1, 14]);
+    console.log('🚀 ~ makePrediction ~ model:', models[0]);
+    const outputTensor = models[0].predict(inputTensor) as tf.Tensor;
+    const result = await outputTensor.data();
+    const data = result[0] as number;
+    return Math.round(data * 100);
+  } catch (error) {
+    console.log('🚀 ~ makePrediction ~ error:', error);
+    throw new Error('Prediction failed');
+  }
 };

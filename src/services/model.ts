@@ -24,7 +24,7 @@ export const formatInput = (inputs: PredictionInputs) => [
 
 export const initiateModel = async (url: string) => {
   try {
-    const model = await tf.loadLayersModel(url, {});
+    const model = await tf.loadLayersModel(url);
     return model;
   } catch (error) {
     console.log('🚀 ~ loadModel ~ error:', error);

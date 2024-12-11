@@ -31,6 +31,7 @@ export const predictCHD = async (req: Request, res: Response) => {
       sex,
       BMI,
     });
+
     const persentage = await makePrediction(input);
 
     await addHistory({
@@ -46,11 +47,11 @@ export const predictCHD = async (req: Request, res: Response) => {
         date: new Date(Date.now()).toISOString(),
       },
     });
-  } catch (err) {
+  } catch {
     res.status(400).json({
       message: 'Prediction failed, there are incorrect request',
       error: true,
-      data: err,
+      // data: err,
     });
   }
 };

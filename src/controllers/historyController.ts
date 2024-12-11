@@ -45,15 +45,23 @@ export const getById = async (req: Request, res: Response) => {
 export const destroy = async (req: Request, res: Response) => {
   const id = Number(req.params.id);
   if (!id) {
+    res.status(400).json({
+      message: 'gagal menghapus histori',
+      error: true,
+    });
+    return;
+  }
+  const history =  await getHistoryById(id);
+  if (!history) {
     res.status(404).json({
-      message: 'Id is not found',
+      message: 'id histori tidak ditemukan',
       error: true,
     });
     return;
   }
   await deleteHistory(id);
   res.status(200).json({
-    message: 'berhasil',
+    message: 'berhasil menghapus histori',
     error: false,
   });
 };

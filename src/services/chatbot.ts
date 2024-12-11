@@ -1,7 +1,7 @@
 import tf from '../libs/tfjs';
 import natural from 'natural';
 import { initiateModel, readJSON } from './model';
-import { TIntent, TIntents } from '../models/Model';
+import { models, TIntent, TIntents } from '../models/Model';
 import {
   CHATBOT_CLASSES_URL,
   CHATBOT_INTENTS_URL,
@@ -11,7 +11,7 @@ import {
 
 
 
-let model: tf.LayersModel;
+// let model: tf.LayersModel;
 
 const lemmatizer = (text: string) => natural.StemmerId.stem(text);
 
@@ -21,7 +21,7 @@ const words = readJSON(CHATBOT_WORDS_URL) as string[];
 const classes = readJSON(CHATBOT_CLASSES_URL) as string[];
 
 export const loadModel = async () => {
-  model = await initiateModel(CHATBOT_MODEL_URL);
+  return await initiateModel(CHATBOT_MODEL_URL);
 };
 
 const cleanUpSentence = (sentence: string) => {
@@ -46,7 +46,7 @@ const bow = (sentence: string, words: string[]) => {
 
 export const predictClass = async (sentence: string) => {
   const inputTensor = bow(sentence, words);
-  const predictions = model.predict(inputTensor) as tf.Tensor;
+  const predictions = models[1].predict(inputTensor) as tf.Tensor;
   const predictionArray = predictions.arraySync() as number[][];
   const maxIndex = predictionArray[0].indexOf(Math.max(...predictionArray[0]));
   return classes[maxIndex];

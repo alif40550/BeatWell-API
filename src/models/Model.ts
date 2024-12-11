@@ -1,3 +1,4 @@
+import tf from '../libs/tfjs';
 import { predictionSchema } from '../libs/validator/prediction.schema';
 
 type PredictionRequest = typeof predictionSchema._type;
@@ -20,3 +21,5 @@ export const sexMap = {
   male: 1,
   female: 0,
 };
+
+export const models: tf.LayersModel[] = [];

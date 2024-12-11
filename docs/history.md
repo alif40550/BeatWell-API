@@ -67,3 +67,62 @@
     ...
 }
 ```
+
+# Delete History
+
+- Method: **DELETE**
+- Endpoint: **/histories/{id}**
+- Headers:
+
+```json
+{
+  "Authorizaton": "access_token"
+}
+```
+
+## Responses (Success)
+
+```json
+{
+    "status":200,
+    "body":{
+        "message":'berhasil menghapus history',
+        "error":false,
+    },
+    ...
+}
+```
+
+## Responses (Failed)
+
+```json
+{
+    "status":400,
+    "body":{
+        "message":'gagal history',
+        "error":true,
+    },
+    ...
+}
+```
+```json
+{
+    "status":401,
+    "body":{
+        "message":'unauthorized',
+        "error":true,
+    },
+    ...
+}
+```
+
+## Responses (Empty)
+
+```json
+{
+    "status":404,
+    "body":{
+        "message":'history not found',
+        "error":true,
+    }
+}

@@ -1,9 +1,10 @@
-import request from 'supertest';
+// import request from 'supertest';
 import input from './data/predictionInputs.json';
 import testUser from './data/testUser.json';
-import { app } from '../src/libs/server';
+// import { app } from '../src/libs/server';
 import { createPayload, getUser } from '../src/services/user';
 import { generateToken } from '../src/libs/jwt';
+import axios from './axios';
 
 // export const server = startServer();
 export const getTokenTest = async (data = testUser) => {
@@ -15,37 +16,42 @@ export const getTokenTest = async (data = testUser) => {
 };
 
 export const signUp = async (data = testUser) => {
-  const res = await request(app)
-    .post('/register')
-    .send(data)
-    .set('Content-Type', 'application/json');
-
+  const res = await axios.post('/register', data, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   return res;
 };
 export const signIn = async (data = testUser) => {
-  const res = await request(app)
-    .post('/login')
-    .send(data)
-    .set('Content-Type', 'application/json');
-
+  const res = await axios.post('/login', data, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   return res;
 };
 
 export const makePrediction = async (token: string) =>
-  await request(app)
-    .post('/prediction')
-    .set('Authorization', token)
-    .send(input)
-    .set('Content-Type', 'application/json');
+  await axios.post('/prediction', input, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  });
 
 export const getHistories = async (token: string, userId: string) =>
-  await request(app)
-    .get(`/users/${userId}/histories`)
-    .set('Authorization', token)
-    .set('Content-Type', 'application/json');
+  await axios.get(`/users/${userId}/histories`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  });
 
 export const deleteHistory = async (token: string, id: string) =>
-  await request(app)
-    .delete(`/histories/${id}`)
-    .set('Authorization', token)
-    .set('Content-Type', 'application/json');
+  await axios.delete(`/histories/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token,
+    },
+  });

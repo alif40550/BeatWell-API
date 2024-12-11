@@ -3,7 +3,7 @@ export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
   transform: {
-    '^.+.tsx?$': ['ts-jest', {}],
+    '^.+\\.(js|ts|tsx)$': ['ts-jest', {}],
   },
-  setupFilesAfterEnv: ['<rootDir>/test/setupMocks.ts'],
+  // setupFilesAfterEnv: ['<rootDir>/test/setupMocks.ts'],
 };
